@@ -69,3 +69,15 @@ RETURNING *
     ).fetchone()
     conn.commit()
     return dict(row)
+
+def photos_find_by_id(id):
+    conn = connect_to_db()
+    row = conn.executed(
+        """
+SELECT * FROM photos
+WHERE id = ?
+        """,
+        (id,),
+    ).fetchone()
+    conn.commit()
+    return dict(row)
